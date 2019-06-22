@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.EntityFrameworkCore;
 namespace PaperStore
 {
     public class Startup
@@ -32,6 +32,12 @@ namespace PaperStore
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services
+                .AddDbContext<PaperContext>(
+                                options =>
+                                   options.UseSqlServer
+                                   (Configuration.GetConnectionString("dev")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

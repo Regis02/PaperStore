@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PaperStore.Controllers
 {
-    [Route("index")]
-    [Route("")]
-    public class HomeController : Controller
+    [Route("health")]
+    public class HealthController : Controller
     {
-        public IActionResult Index()
+        [HttpGet("check")]
+        string HealthCheck()
         {
-            return View();
+            return "ok :)";
         }
     }
 }
